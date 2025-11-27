@@ -1,0 +1,33 @@
+<script>
+    // JavaScript breve y comentado:
+    // verDetalle(modelo, precio): muestra una alerta con modelo y precio (simulación)
+    function verDetalle(modelo, precio){
+      const texto = modelo + ' — Precio: $' + precio.toLocaleString() + '\nContacta para más información y fotos técnicas.';
+      alert(texto);
+    }
+
+    // contactar(modelo): rellena el campo "modelo" del formulario y desplaza la vista
+    function contactar(modelo){
+      const interes = document.getElementById('interes');
+      const modeloInput = document.getElementById('modelo');
+      const status = document.getElementById('status');
+      if(interes) interes.value = 'venta';
+      if(modeloInput) modeloInput.value = modelo;
+      document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+      if(status) status.textContent = 'Modelo seleccionado: ' + modelo + ' — completa tus datos y envía (simulación).';
+    }
+
+    // Manejo del envío del formulario: evita envío real y muestra mensaje de confirmación
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const status = document.getElementById('status');
+      if (!this.checkValidity()){
+        status.textContent = 'Por favor completa los campos obligatorios.';
+        return;
+      }
+      status.textContent = 'Solicitud enviada (simulación). Te contactaremos en 24-48h.';
+      this.reset();
+    });
+  </script>
+</body>
+</html>
